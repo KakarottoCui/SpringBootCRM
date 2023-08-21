@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.study.crm.dao.CustomerMapper" >
+  <resultMap id="BaseResultMap" type="com.study.crm.vo.Customer" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="cus_manager" property="cusManager" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
+    <result column="satisfaction" property="satisfaction" jdbcType="VARCHAR" />
+    <result column="reputation" property="reputation" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="post_code" property="postCode" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="fax" property="fax" jdbcType="VARCHAR" />
+    <result column="web_site" property="webSite" jdbcType="VARCHAR" />
+    <result column="business_license" property="businessLicense" jdbcType="VARCHAR" />
+    <result column="legal_person" property="legalPerson" jdbcType="VARCHAR" />
+    <result column="registered_capital" property="registeredCapital" jdbcType="VARCHAR" />
+    <result column="turnover" property="turnover" jdbcType="VARCHAR" />
+    <result column="bank" property="bank" jdbcType="VARCHAR" />
+    <result column="account_number" property="accountNumber" jdbcType="VARCHAR" />
+    <result column="local_tax_num" property="localTaxNum" jdbcType="VARCHAR" />
+    <result column="national_tax_num" property="nationalTaxNum" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="is_valid" property="isValid" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, customer_id, name, area, cus_manager, level, satisfaction, reputation, address, 
+    post_code, phone, fax, web_site, business_license, legal_person, registered_capital, 
+    turnover, bank, account_number, local_tax_num, national_tax_num, state, is_valid, 
+    create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_customer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_customer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.study.crm.vo.Customer" >
+    insert into t_customer (id, customer_id, name, 
+      area, cus_manager, level, 
+      satisfaction, reputation, address, 
+      post_code, phone, fax, 
+      web_site, business_license, legal_person, 
+      registered_capital, turnover, bank, 
+      account_number, local_tax_num, national_tax_num, 
+      state, is_valid, create_date, 
+      update_date)
+    values (#{id,jdbcType=INTEGER}, #{customerId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{area,jdbcType=VARCHAR}, #{cusManager,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR}, 
+      #{satisfaction,jdbcType=VARCHAR}, #{reputation,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{postCode,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, 
+      #{webSite,jdbcType=VARCHAR}, #{businessLicense,jdbcType=VARCHAR}, #{legalPerson,jdbcType=VARCHAR}, 
+      #{registeredCapital,jdbcType=VARCHAR}, #{turnover,jdbcType=VARCHAR}, #{bank,jdbcType=VARCHAR}, 
+      #{accountNumber,jdbcType=VARCHAR}, #{localTaxNum,jdbcType=VARCHAR}, #{nationalTaxNum,jdbcType=VARCHAR}, 
+      #{state,jdbcType=INTEGER}, #{isValid,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.study.crm.vo.Customer" >
+    insert into t_customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="cusManager != null" >
+        cus_manager,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="satisfaction != null" >
+        satisfaction,
+      </if>
+      <if test="reputation != null" >
+        reputation,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="postCode != null" >
+        post_code,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="fax != null" >
+        fax,
+      </if>
+      <if test="webSite != null" >
+        web_site,
+      </if>
+      <if test="businessLicense != null" >
+        business_license,
+      </if>
+      <if test="legalPerson != null" >
+        legal_person,
+      </if>
+      <if test="registeredCapital != null" >
+        registered_capital,
+      </if>
+      <if test="turnover != null" >
+        turnover,
+      </if>
+      <if test="bank != null" >
+        bank,
+      </if>
+      <if test="accountNumber != null" >
+        account_number,
+      </if>
+      <if test="localTaxNum != null" >
+        local_tax_num,
+      </if>
+      <if test="nationalTaxNum != null" >
+        national_tax_num,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="isValid != null" >
+        is_valid,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="cusManager != null" >
+        #{cusManager,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="satisfaction != null" >
+        #{satisfaction,jdbcType=VARCHAR},
+      </if>
+      <if test="reputation != null" >
+        #{reputation,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="webSite != null" >
+        #{webSite,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicense != null" >
+        #{businessLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPerson != null" >
+        #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredCapital != null" >
+        #{registeredCapital,jdbcType=VARCHAR},
+      </if>
+      <if test="turnover != null" >
+        #{turnover,jdbcType=VARCHAR},
+      </if>
+      <if test="bank != null" >
+        #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNumber != null" >
+        #{accountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="localTaxNum != null" >
+        #{localTaxNum,jdbcType=VARCHAR},
+      </if>
+      <if test="nationalTaxNum != null" >
+        #{nationalTaxNum,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="isValid != null" >
+        #{isValid,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.study.crm.vo.Customer" >
+    update t_customer
+    <set >
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="cusManager != null" >
+        cus_manager = #{cusManager,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="satisfaction != null" >
+        satisfaction = #{satisfaction,jdbcType=VARCHAR},
+      </if>
+      <if test="reputation != null" >
+        reputation = #{reputation,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        post_code = #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        fax = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="webSite != null" >
+        web_site = #{webSite,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicense != null" >
+        business_license = #{businessLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPerson != null" >
+        legal_person = #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredCapital != null" >
+        registered_capital = #{registeredCapital,jdbcType=VARCHAR},
+      </if>
+      <if test="turnover != null" >
+        turnover = #{turnover,jdbcType=VARCHAR},
+      </if>
+      <if test="bank != null" >
+        bank = #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNumber != null" >
+        account_number = #{accountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="localTaxNum != null" >
+        local_tax_num = #{localTaxNum,jdbcType=VARCHAR},
+      </if>
+      <if test="nationalTaxNum != null" >
+        national_tax_num = #{nationalTaxNum,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="isValid != null" >
+        is_valid = #{isValid,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.study.crm.vo.Customer" >
+    update t_customer
+    set customer_id = #{customerId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      cus_manager = #{cusManager,jdbcType=VARCHAR},
+      level = #{level,jdbcType=VARCHAR},
+      satisfaction = #{satisfaction,jdbcType=VARCHAR},
+      reputation = #{reputation,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      post_code = #{postCode,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      fax = #{fax,jdbcType=VARCHAR},
+      web_site = #{webSite,jdbcType=VARCHAR},
+      business_license = #{businessLicense,jdbcType=VARCHAR},
+      legal_person = #{legalPerson,jdbcType=VARCHAR},
+      registered_capital = #{registeredCapital,jdbcType=VARCHAR},
+      turnover = #{turnover,jdbcType=VARCHAR},
+      bank = #{bank,jdbcType=VARCHAR},
+      account_number = #{accountNumber,jdbcType=VARCHAR},
+      local_tax_num = #{localTaxNum,jdbcType=VARCHAR},
+      national_tax_num = #{nationalTaxNum,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      is_valid = #{isValid,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!-- 通过参数查询 state:1 未流失-->
+  <select id="selectByParams" parameterType="com.study.crm.query.CustomerQuery" resultType="com.study.crm.vo.Customer">
+    select <include refid="Base_Column_List"/>
+    from t_customer
+    <where>
+      is_valid=1 and state=1
+      <if test="null !=Name and Name !=''">
+        and   name like concat('%',#{Name},'%')
+      </if>
+      <if test="null !=customerId and customerId !=''">
+        and customer_id =#{customerId}
+      </if>
+      <if test="null !=level and level !=''">
+        and level =#{level}
+      </if>
+    </where>
+  </select>
+
+    <select id="queryCustomerByName" resultType="com.study.crm.vo.Customer">
+        select <include refid="Base_Column_List"/>
+        from t_customer
+        where
+        is_valid=1 and name=#{name}
+    </select>
+
+  <select id="queryLossCustomer" resultType="com.study.crm.vo.Customer">
+     SELECT
+        *
+      FROM
+        t_customer c
+      WHERE
+        c.is_valid = 1
+        AND c.state = 1
+        AND DATE_ADD( c.create_date, INTERVAL 6 MONTH ) &lt; NOW()
+        AND c.id NOT IN (
+          SELECT DISTINCT
+          o.cus_id
+          FROM
+          t_customer_order o
+          WHERE
+          o.is_valid = 1
+          AND o.state
+          AND DATE_ADD( o.order_date, INTERVAL 6 MONTH ) &gt; NOW()
+      )
+  </select>
+
+  <!-- 更新客户状态 -->
+  <update id="updateCustomerStateByIds" >
+    update t_customer set state=0
+    where id in
+    <foreach collection="list" item="item" separator="," open="(" close=")">
+      #{item}
+    </foreach>
+  </update>
+
+  <!-- 查询客户贡献 -->
+  <select id="queryCustomerContributionByParams" parameterType="com.study.crm.query.CustomerQuery" resultType="java.util.Map">
+    select
+    c.name,
+    sum(d.sum) as total
+    from t_customer c left join  t_customer_order o on c.id=o.cus_id
+    left join t_order_details d on o.id=d.order_id
+    <where>
+      c.is_valid=1 and c.state=1 and o.is_valid=1 and o.state=1
+      <if test="null !=Name and Name !=''">
+        and  c.name like concat('%',#{Name},'%')
+      </if>
+      <if test="null !=time and time !=''">
+        and  o.order_date &gt;#{time}
+      </if>
+    </where>
+    group by c.name
+    <if test="null !=type">
+      <if test="type==1">
+        having total &lt;=1000
+      </if>
+      <if test="type==2">
+        having total &gt;1000 and total &lt;=3000
+      </if>
+      <if test="type==3">
+        having total &gt;3000 and total &lt;=5000
+      </if>
+      <if test="type==5">
+        having total &gt;5000
+      </if>
+    </if>
+    order by total desc
+  </select>
+
+  <!-- 客户构成图 -->
+  <select id="countCustomerMake" resultType="java.util.Map">
+       select
+         level,
+         count(1) as total
+       from t_customer
+       where is_valid=1 and state=1
+       group by  level
+    </select>
+
+  <!-- 客户服务图 -->
+  <select id="countCustomerServe" resultType="java.util.Map">
+       select
+         data_dic_value,
+         count(1) as total
+       from t_customer_serve s LEFT JOIN t_datadic d on
+			 s.serve_type=d.id
+       where s.is_valid=1
+       group by  serve_type
+    </select>
+</mapper>

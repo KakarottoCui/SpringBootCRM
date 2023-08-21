@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.study.crm.dao.DataDicMapper" >
+  <resultMap id="BaseResultMap" type="com.study.crm.vo.DataDic" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="data_dic_name" property="dataDicName" jdbcType="VARCHAR" />
+    <result column="data_dic_value" property="dataDicValue" jdbcType="VARCHAR" />
+    <result column="is_valid" property="isValid" jdbcType="TINYINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, data_dic_name, data_dic_value, is_valid, create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_datadic
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_datadic
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.study.crm.vo.DataDic" >
+    insert into t_datadic (id, data_dic_name, data_dic_value, 
+      is_valid, create_date, update_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{dataDicName,jdbcType=VARCHAR}, #{dataDicValue,jdbcType=VARCHAR}, 
+      #{isValid,jdbcType=TINYINT}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.study.crm.vo.DataDic" >
+    insert into t_datadic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="dataDicName != null" >
+        data_dic_name,
+      </if>
+      <if test="dataDicValue != null" >
+        data_dic_value,
+      </if>
+      <if test="isValid != null" >
+        is_valid,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="dataDicName != null" >
+        #{dataDicName,jdbcType=VARCHAR},
+      </if>
+      <if test="dataDicValue != null" >
+        #{dataDicValue,jdbcType=VARCHAR},
+      </if>
+      <if test="isValid != null" >
+        #{isValid,jdbcType=TINYINT},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.study.crm.vo.DataDic" >
+    update t_datadic
+    <set >
+      <if test="dataDicName != null" >
+        data_dic_name = #{dataDicName,jdbcType=VARCHAR},
+      </if>
+      <if test="dataDicValue != null" >
+        data_dic_value = #{dataDicValue,jdbcType=VARCHAR},
+      </if>
+      <if test="isValid != null" >
+        is_valid = #{isValid,jdbcType=TINYINT},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.study.crm.vo.DataDic" >
+    update t_datadic
+    set data_dic_name = #{dataDicName,jdbcType=VARCHAR},
+      data_dic_value = #{dataDicValue,jdbcType=VARCHAR},
+      is_valid = #{isValid,jdbcType=TINYINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByParams" parameterType="com.study.crm.query.DataDicQuery" resultType="com.study.crm.vo.DataDic">
+    select
+   <include refid="Base_Column_List"/>
+
+    from t_datadic
+    <where>
+      is_valid=1
+    </where>
+  </select>
+
+  <update id="deleteBatch" >
+    update t_datadic
+    set
+    is_valid=0
+    where id
+    in
+    <foreach collection="array" separator="," open="("
+             close=")" item="id">
+      #{id}
+    </foreach>
+  </update>
+</mapper>
