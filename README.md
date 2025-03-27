@@ -1,7 +1,7 @@
 # SpringBootCRM
 基于java SpringBoot CRM客户关系管理系统设计
 
-演示视频链接：https://live.csdn.net/v/322053
+演示视频链接：https://www.bilibili.com/video/BV1xm4y1M7SW/
 
 实现的功能：
 
